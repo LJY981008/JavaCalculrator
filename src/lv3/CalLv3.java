@@ -9,10 +9,10 @@ public class CalLv3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int arraySize = 2;
-        String[] values = new String[arraySize];
+        String[] inputValues = new String[arraySize];
         Double[] doubleValues = new Double[arraySize];
         Integer[] intValues = new Integer[arraySize];
-        String operator = "";
+        String operator;
         boolean runCalculrator = true;
 
         while (runCalculrator) {
@@ -20,9 +20,9 @@ public class CalLv3 {
             String stopper = "";
             try {
                 System.out.print("입력1 : ");
-                values[0] = scanner.next();
+                inputValues[0] = scanner.next();
                 System.out.print("입력2 : ");
-                values[1] = scanner.next();
+                inputValues[1] = scanner.next();
                 System.out.print("연산 방법 : ");
                 operator = scanner.next();
             } catch (InputMismatchException e) {
@@ -32,17 +32,18 @@ public class CalLv3 {
             }
 
             // 입력 값의 정상적인지 체크하고 자료형도 체크
+            // String = 수가 아닐 경우, double = 실수일 경우, int = 정수일 경우
             Calculrator<?> calculrator = null;
-            if (checkFormet(values[0]).equals("String") || checkFormet(values[1]).equals("String")) {
+            if (checkFormet(inputValues[0]).equals("String") || checkFormet(inputValues[1]).equals("String")) {
                 System.out.println("숫자를 입력해 주세요");
-            } else if (checkFormet(values[0]).equals("double") || checkFormet(values[1]).equals("double")) {
+            } else if (checkFormet(inputValues[0]).equals("double") || checkFormet(inputValues[1]).equals("double")) {
                 for (int i = 0; i < arraySize; i++) {
-                    doubleValues[i] = Double.parseDouble(values[i]);
+                    doubleValues[i] = Double.parseDouble(inputValues[i]);
                 }
                 calculrator = new Calculrator<>(doubleValues[0], doubleValues[1]);
             } else {
                 for (int i = 0; i < arraySize; i++) {
-                    intValues[i] = Integer.parseInt(values[i]);
+                    intValues[i] = Integer.parseInt(inputValues[i]);
                 }
                 calculrator = new Calculrator<>(intValues[0], intValues[1]);
             }
@@ -68,10 +69,11 @@ public class CalLv3 {
     public static void printResult(String result, List<String> recordResult) {
         System.out.println("연산 결과 : " + result);
         if (!result.equals("잘못된 연산자 입니다")) {
+            // 과거 연산 기록에서 result보다 큰 값을 filter해서 저장
             List<Double> biggers = recordResult.stream()
                     .filter(num -> Double.parseDouble(num) > Double.parseDouble(result))
                     .map(Double::parseDouble).toList();
-
+            // 저장한 큰 값들 출력
             for (Double bigger : biggers) {
                 System.out.print("결과 값보다 큰 이전 기록 : ");
                 String temp = String.valueOf(bigger);

@@ -16,11 +16,13 @@ public class Calculrator {
         return result;
     }
 
+    // getter 기록이 없으면 null 반환
     public Queue<String> getQueueResult() {
         if(queueResult.isEmpty()) return null;
         return queueResult;
     }
 
+    // setter, 숫자가 아닐 경우 catch
     public void setQueueResult(String result){
         try {
             Integer.parseInt(result);

@@ -43,7 +43,6 @@ public class Calculrator<T extends Number> {
         if (value1 instanceof Integer && value2 instanceof Integer) {
             stringResult = String.valueOf((int) result);
             listResult.add(stringResult);
-
         } else {
             stringResult = String.valueOf(result);
             listResult.add(stringResult);
