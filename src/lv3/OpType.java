@@ -1,5 +1,8 @@
 package lv3;
 
+/**
+ * 연산자 열거형 데이터
+ */
 public enum OpType {
     PLUS("+"), MINUS("-"), MULT("*"), DIV("/");
 
