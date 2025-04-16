@@ -2,24 +2,30 @@ package lv3;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.*;
+public class Calculrator<T extends Number> {
+    public static List<String> listResult = new ArrayList<>();
+    T value1;
+    T value2;
+    Calculrator(T value1, T value2){
+        this.value1 = value1;
+        this.value2 = value2;
+    }
 
-public class Calculrator {
-    List<String> listResult = new ArrayList<>();
-    public String calculate(String[] values, char op) {
+    public String calculate(char op) {
+        String result = "";
 
         if(op == OpType.PLUS.getType()){
-            System.out.println("+");
+           result = String.valueOf(value1.doubleValue() + value2.doubleValue());
         }else if(op == OpType.MINUS.getType()){
-            System.out.println("-");
+            result = String.valueOf(value1.doubleValue() - value2.doubleValue());
         }else if(op == OpType.MULT.getType()){
-            System.out.println("*");
+            result = String.valueOf(value1.doubleValue() * value2.doubleValue());
         }else if(op == OpType.DIV.getType()){
-            System.out.println("/");
+            result = String.valueOf(value1.doubleValue() / value2.doubleValue());
         }else{
-            System.out.println("+4");
+            result = "연산자를 잘못입력했습니다.";
         }
 
-        return " ";
+        return result;
     }
 }

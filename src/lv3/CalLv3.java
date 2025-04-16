@@ -1,14 +1,15 @@
 package lv3;
 
-import java.util.Deque;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalLv3 {
     public static void main(String[] args) {
-        Calculrator calculrator = new Calculrator();
         Scanner scanner = new Scanner(System.in);
-        String[] values = new String[2];
+        int arraySize = 2;
+        String[] values = new String[arraySize];
+        Double[] doubleValues = new Double[arraySize];
+        Integer[] intValues = new Integer[arraySize];
         String operator = "";
         String result = "";
 
@@ -27,8 +28,25 @@ public class CalLv3 {
                 System.out.println("잘못된 입력입니다.");
                 break;
             }
+            Calculrator<?> calculrator = null;
 
-            result = calculrator.calculate(values, operator.charAt(0));
+            if(checkFormet(values[0]).equals("String") || checkFormet(values[1]).equals("String")){
+                result = "숫자를 입력해 주세요";
+            }else if(checkFormet(values[0]).equals("double") || checkFormet(values[1]).equals("double")){
+                for(int i = 0; i < arraySize; i++){
+                    doubleValues[i] = Double.parseDouble(values[i]);
+                }
+                calculrator = new Calculrator<>(doubleValues[0], doubleValues[1]);
+            }else{
+                for(int i = 0; i <arraySize; i++){
+                    intValues[i] = Integer.parseInt(values[i]);
+                }
+                calculrator = new Calculrator<>(intValues[0], intValues[1]);
+            }
+
+            if(calculrator != null)
+                result = calculrator.calculate(operator.charAt(0));
+
 
             System.out.println("연산 결과 : " + result);
             System.out.println("연산을 계속 진행하시겠습니까?(종료 = exit)");
@@ -47,7 +65,7 @@ public class CalLv3 {
                 Double.parseDouble(value);
                 return "double";
             }catch (NumberFormatException e2){
-                return "숫자가 아닙니다";
+                return "String";
             }
         }
     }
