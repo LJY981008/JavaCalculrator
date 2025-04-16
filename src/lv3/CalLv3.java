@@ -3,6 +3,9 @@ package lv3;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * 메인 클래스
+ */
 public class CalLv3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -26,12 +29,12 @@ public class CalLv3 {
                 operator = scanner.next();
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 입력입니다.");
-                break;
+                System.out.println("다시 입력해 주세요.");
+                continue;
             }
             Calculrator<?> calculrator = null;
-
             if(checkFormet(values[0]).equals("String") || checkFormet(values[1]).equals("String")){
-                result = "숫자를 입력해 주세요";
+                System.out.println("숫자를 입력해 주세요");
             }else if(checkFormet(values[0]).equals("double") || checkFormet(values[1]).equals("double")){
                 for(int i = 0; i < arraySize; i++){
                     doubleValues[i] = Double.parseDouble(values[i]);
@@ -44,11 +47,9 @@ public class CalLv3 {
                 calculrator = new Calculrator<>(intValues[0], intValues[1]);
             }
 
-            if(calculrator != null)
-                result = calculrator.calculate(operator.charAt(0));
+            if(calculrator != null) calculrator.calculate(operator.charAt(0));
 
 
-            System.out.println("연산 결과 : " + result);
             System.out.println("연산을 계속 진행하시겠습니까?(이어하기 = 아무키 입력, 종료 = exit)");
 
             stopper = scanner.next();
