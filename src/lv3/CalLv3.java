@@ -49,13 +49,20 @@ public class CalLv3 {
 
 
             System.out.println("연산 결과 : " + result);
-            System.out.println("연산을 계속 진행하시겠습니까?(종료 = exit)");
+            System.out.println("연산을 계속 진행하시겠습니까?(이어하기 = 아무키 입력, 종료 = exit)");
+
             stopper = scanner.next();
             if(stopper.equalsIgnoreCase("exit")) runCalculrator = false;
         }
         System.out.println("프로그램을 종료합니다.");
 
     }
+
+    /**
+     * 입력값이 int인지 double인지 판별하는 메서드
+     * @param value
+     * @return
+     */
     public static String checkFormet(String value){
         try {
             Integer.parseInt(value);

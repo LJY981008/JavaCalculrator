@@ -12,20 +12,24 @@ public class Calculrator<T extends Number> {
     }
 
     public String calculate(char op) {
-        String result = "";
+        double result;
 
-        if(op == OpType.PLUS.getType()){
-           result = String.valueOf(value1.doubleValue() + value2.doubleValue());
-        }else if(op == OpType.MINUS.getType()){
-            result = String.valueOf(value1.doubleValue() - value2.doubleValue());
-        }else if(op == OpType.MULT.getType()){
-            result = String.valueOf(value1.doubleValue() * value2.doubleValue());
-        }else if(op == OpType.DIV.getType()){
-            result = String.valueOf(value1.doubleValue() / value2.doubleValue());
-        }else{
-            result = "연산자를 잘못입력했습니다.";
+        if (op == OpType.PLUS.getType()) {
+            result = value1.doubleValue() + value2.doubleValue();
+        } else if (op == OpType.MINUS.getType()) {
+            result = value1.doubleValue() - value2.doubleValue();
+        } else if (op == OpType.MULT.getType()) {
+            result = value1.doubleValue() * value2.doubleValue();
+        } else if (op == OpType.DIV.getType()) {
+            result = value1.doubleValue() / value2.doubleValue();
+        } else {
+            return "연산자를 잘못 입력했습니다.";
         }
 
-        return result;
+        if (value1 instanceof Integer && value2 instanceof Integer) {
+            return String.valueOf((int) result);
+        }else {
+            return String.valueOf(result);
+        }
     }
 }
