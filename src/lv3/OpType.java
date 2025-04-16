@@ -46,6 +46,7 @@ public enum OpType{
     }
 
     public abstract double cal(double[] values);
+
     public static OpType findType(String type){
         for(OpType op : OpType.values()){
             if(op.getType().equals(type)){
