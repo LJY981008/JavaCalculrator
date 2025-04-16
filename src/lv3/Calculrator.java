@@ -2,6 +2,8 @@ package lv3;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.*;
+
 public class Calculrator {
     List<String> listResult = new ArrayList<>();
     public String calculate(String[] values, char op) {
