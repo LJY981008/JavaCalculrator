@@ -26,7 +26,8 @@ public class CalLv2 {
                 System.out.println("잘못된 입력입니다.");
                 break;
             }
-            System.out.println("연산 결과 : " + calculrator.calculate(values, operator.charAt(0)));
+            result = calculrator.calculate(values, operator.charAt(0));
+            System.out.println("연산 결과 : " + result);
             System.out.println("연산을 계속 진행하시겠습니까?(종료 = exit)");
             stopper = scanner.next();
             if(stopper.equalsIgnoreCase("exit")) runCalculrator = false;
