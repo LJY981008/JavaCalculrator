@@ -16,9 +16,9 @@ public class Calculrator {
         return result;
     }
 
-    public String getQueueResult() {
-        if(queueResult.isEmpty()) return "연산기록이 없습니다.";
-        return queueResult.poll();
+    public Queue<String> getQueueResult() {
+        if(queueResult.isEmpty()) return null;
+        return queueResult;
     }
 
     public void setQueueResult(String result){
