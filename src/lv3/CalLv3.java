@@ -34,8 +34,7 @@ public class CalLv3 {
                 operator = scanner.next();
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 입력입니다.");
-                System.out.println("다시 입력해 주세요.");
-                continue;
+                break;
             }
 
             // 입력 값의 정상적인지 체크하고 자료형 체크하고 Calculrator 호출
@@ -62,6 +61,7 @@ public class CalLv3 {
             if (stopper.equalsIgnoreCase("exit")) runCalculrator = false;
         }
         System.out.println("프로그램을 종료합니다.");
+        scanner.close();
     }
 
     /**
