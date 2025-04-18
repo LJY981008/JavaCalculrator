@@ -8,16 +8,20 @@ import java.util.List;
  * @param <T> 연산의 필요한 값의 제너릭
  */
 public class Calculrator<T extends Number> {
-    private static final List<String> listResult = new ArrayList<>();
+    public static List<String> listResult = new ArrayList<>();
+    T value1;
+    T value2;
+
+    Calculrator(T value1, T value2) {
+        this.value1 = value1;
+        this.value2 = value2;
+    }
 
     /**
      * 연산 메서드
-     * @param value1 입력값 1
-     * @param value2 입력값 2
-     * @param op 연산자
-     * @return 연산 결과
+     * @param op 연산기호
      */
-    public String calculate(T value1, T value2, char op) {
+    public String calculate(char op) {
         double result;
         String stringResult;
 
@@ -29,10 +33,6 @@ public class Calculrator<T extends Number> {
         } else if (op == OpType.MULT.getType()) {
             result = value1.doubleValue() * value2.doubleValue();
         } else if (op == OpType.DIV.getType()) {
-            if(value2.doubleValue() == 0){
-                stringResult = "0으로 나눌 수 없습니다";
-                return stringResult;
-            }
             result = value1.doubleValue() / value2.doubleValue();
         } else {
             stringResult = "잘못된 연산자 입니다";
@@ -49,10 +49,4 @@ public class Calculrator<T extends Number> {
         }
         return stringResult;
     }
-
-
-    public List<String> getRecord(){
-        return listResult;
-    }
-
 }
